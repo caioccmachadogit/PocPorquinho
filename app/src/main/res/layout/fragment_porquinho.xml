@@ -8,42 +8,70 @@
     android:id="@+id/main"
     android:focusable="true">
 
+
     <RelativeLayout
-        android:background="@android:color/holo_green_dark"
-        android:id="@+id/relative_main"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:id="@+id/relative_box_azul"
+        android:layout_width="match_parent"
+        android:layout_height="420dp"
+        android:layout_below="@+id/relative_box_rosa"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <!--CONTENT-->
 
         <RelativeLayout
-            android:id="@+id/relative_drag_button_container"
+            android:background="@android:color/holo_blue_dark"
+            android:id="@+id/relative_container_main"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="400dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true">
+            <ScrollView
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true">
 
-            <RelativeLayout
-                android:id="@+id/relative_container_info"
-                android:background="#C71585"
-                android:layout_height="match_parent"
-                android:layout_width="match_parent">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingBottom="16dp"
+                    android:paddingTop="16dp">
 
-                <ImageView
-                    android:id="@+id/imageview_indicator"
-                    android:layout_width="30dp"
-                    android:layout_height="50dp"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/piggy"/>
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/piggy"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:text="@string/texto_info"
-                    android:textSize="13sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="This message is confidential and is addressed solely to (s) person (s) and / or institutions listed above and may contain confidential or privileged information, which can not in any way be used, disclosed, altered or copied. If this message is received by mistake, please provide their exclusion from any system and notify the sender immediately. The sender uses the mail in the course of their work, exempting the institution from any liability for misuse."/>
 
-            </RelativeLayout>
+                    <Button
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/button_investir"
+                        android:layout_width="150dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/btn_investir"
+                        android:textColor="@color/colorAccent"
+                        android:text="INVESTIR"/>
 
+                </LinearLayout>
+            </ScrollView>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_below="@+id/relative_container_main"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical"
+            android:id="@+id/button_lingua"
+            android:background="@drawable/btn_abrir"
+            android:layout_width="100dp"
+            android:layout_height="20dp">
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -51,73 +79,53 @@
                 android:textStyle="normal"
                 android:textSize="20sp"
                 android:background="#00000000"/>
-
-        </RelativeLayout>
-
-
-        <RelativeLayout
-
-            android:layout_below="@+id/relative_drag_button_container"
-            android:layout_width="match_parent"
-            android:layout_height="420dp">
-
-            <!--CONTENT-->
-            <RelativeLayout
-                android:id="@+id/relative_container_main"
-                android:background="@android:color/transparent"
-                android:layout_width="match_parent"
-                android:layout_height="400dp">
-                <ScrollView
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true">
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:paddingBottom="16dp"
-                        android:paddingTop="16dp">
-
-                        <ImageView
-                            android:layout_width="60dp"
-                            android:layout_height="100dp"
-                            android:layout_gravity="center_horizontal"
-                            android:src="@drawable/piggy"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="This message is confidential and is addressed solely to (s) person (s) and / or institutions listed above and may contain confidential or privileged information, which can not in any way be used, disclosed, altered or copied. If this message is received by mistake, please provide their exclusion from any system and notify the sender immediately. The sender uses the mail in the course of their work, exempting the institution from any liability for misuse."/>
-
-                        <Button
-                            android:layout_marginTop="10dp"
-                            android:id="@+id/button_investir"
-                            android:layout_width="150dp"
-                            android:layout_height="35dp"
-                            android:layout_gravity="center_horizontal"
-                            android:background="@drawable/btn_investir"
-                            android:textColor="@color/colorAccent"
-                            android:text="INVESTIR"/>
-
-                    </LinearLayout>
-                </ScrollView>
             </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_centerHorizontal="true"
-                android:orientation="vertical"
-                android:id="@+id/button_lingua"
-                android:background="@drawable/btn_abrir"
-                android:layout_width="100dp"
-                android:layout_height="20dp"/>
-
-        </RelativeLayout>
-
 
     </RelativeLayout>
 
+    <!--BOX ROSA -->
+    <RelativeLayout
+        android:id="@+id/relative_box_rosa"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
+        <RelativeLayout
+            android:id="@+id/relative_container_info"
+            android:background="#C71585"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+            <ImageView
+                android:id="@+id/imageview_indicator"
+                android:layout_width="30dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/piggy"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/texto_info"
+                android:textSize="13sp" />
+
+        </RelativeLayout>
+
+        <!--<Button-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:id="@+id/button_drag"-->
+        <!--android:textStyle="normal"-->
+        <!--android:textSize="20sp"-->
+        <!--android:background="#00000000"/>-->
+
+    </RelativeLayout>
 
 
 </RelativeLayout>

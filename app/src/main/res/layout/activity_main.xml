@@ -15,11 +15,11 @@
         <fragment
             android:id="@+id/fragment_porquinho"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:name="com.example.santander.pocporquinho.PorquinhoFragment"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            tools:layout="@layout/fragment_porquinho" />
+            tools:layout="@layout/fragment_porquinho"/>
 
         </RelativeLayout>
 

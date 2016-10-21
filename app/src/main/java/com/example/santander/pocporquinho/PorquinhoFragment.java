@@ -30,11 +30,71 @@ public class PorquinhoFragment extends android.support.v4.app.Fragment{
     private int initailY = 0;
     private boolean insercaoBtn = true;
 
+    private RelativeLayout relativeBoxRosa;
+
+    private RelativeLayout relativeBoxAzul;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         mLayout = inflater.inflate(R.layout.fragment_porquinho, container, false);
+
+//        mDragButton = (Button) mLayout.findViewById(R.id.button_drag);
+//        mDragButton.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                onActionContainer(v, event);
+//                return false;
+//            }
+//        });
+//
+//        relativeBoxRosa = (RelativeLayout) mLayout.findViewById(R.id.relative_box_rosa);
+//
+//        buttonInvestir = (Button) mLayout.findViewById(R.id.button_investir);
+//        buttonInvestir.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                relativeBoxAzul.setY(-1200f);
+//                relativeBoxRosa.setVisibility(View.INVISIBLE);
+//                //onActionContainer();
+//            }
+//        });
+//
+//
+//
+//        relativeBoxAzul = (RelativeLayout) mLayout.findViewById(R.id.relative_box_azul);
+//
+//
+//
+//        RelativeLayout relativeLingua = (RelativeLayout) mLayout.findViewById(R.id.button_lingua);
+//        relativeLingua.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                //onActionContainer(v, event);
+//                return false;
+//            }
+//        });
+
+
+//        ViewTreeObserver vto = layout.getViewTreeObserver();
+//        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+//            @Override
+//            public void onGlobalLayout() {
+//                layout.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+//                int width  = layout.getMeasuredWidth();
+//                int height = layout.getMeasuredHeight();
+//                //TODO: code
+//                System.out.println("Layout Height : "+height+ "and Layuot Width : "+width);
+//            }
+//        });
+
+        return mLayout;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
 
         mDragButton = (Button) mLayout.findViewById(R.id.button_drag);
         mDragButton.setOnTouchListener(new View.OnTouchListener() {
@@ -45,26 +105,50 @@ public class PorquinhoFragment extends android.support.v4.app.Fragment{
             }
         });
 
-        relativeLayoutContainer = (RelativeLayout) mLayout.findViewById(R.id.relative_drag_button_container);
+        relativeBoxRosa = (RelativeLayout) mLayout.findViewById(R.id.relative_box_rosa);
 
         buttonInvestir = (Button) mLayout.findViewById(R.id.button_investir);
         buttonInvestir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onActionContainer();
+                relativeBoxAzul.setY(-1200f);
+                relativeBoxRosa.setVisibility(View.INVISIBLE);
+                //onActionContainer();
             }
         });
 
-        return mLayout;
+
+
+        relativeBoxAzul = (RelativeLayout) mLayout.findViewById(R.id.relative_box_azul);
+
+
+
+        RelativeLayout relativeLingua = (RelativeLayout) mLayout.findViewById(R.id.button_lingua);
+        relativeLingua.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                //onActionContainer(v, event);
+                return false;
+            }
+        });
+
+//        int inicioLingua = relativeBoxAzul.getHeight()+relativeBoxRosa.getHeight()+200;
+//        relativeBoxAzul.setY(-inicioLingua);
+
+        relativeBoxAzul.setY(-1200f);
+
     }
 
     private void onActionContainer(View v, MotionEvent event){
         int y = (int) event.getRawY();
         Log.v("event.getRawY =", String.valueOf(y));
+        int topo = getFragmentlayoutHeight();
 
-        Log.v("ScreenHeight =", String.valueOf(getScreenHeight()));
-        Log.v("FragmentlayoutHeight =", String.valueOf(getFragmentlayoutHeight()));
-        Log.v("DragButtonHeight =", String.valueOf(getDragButtonHeight()));
+        y = y - 200 - relativeBoxRosa.getHeight()  - relativeBoxAzul.getHeight();
+
+//        Log.v("ScreenHeight =", String.valueOf(getScreenHeight()));
+//        Log.v("FragmentlayoutHeight =", String.valueOf(getFragmentlayoutHeight()));
+//        Log.v("DragButtonHeight =", String.valueOf(getDragButtonHeight()));
 
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
@@ -77,18 +161,18 @@ public class PorquinhoFragment extends android.support.v4.app.Fragment{
                 Log.v("ACTION_UP", "ACTION_UP");
                 if (isLoginShowing) {
                     //sobe o container
-                    relativeLayoutContainer.setVisibility(View.VISIBLE);
-                    animateLayoutParams(getFragmentlayoutHeight(), getDragButtonHeight());
+                    //relativeLayoutContainer.setVisibility(View.VISIBLE);
+                    //animateLayoutParams(getFragmentlayoutHeight(), getDragButtonHeight());
                 } else {
                     //desce o container
-                    relativeLayoutContainer.setVisibility(View.INVISIBLE);
-                    animateLayoutParams(getFragmentlayoutHeight(), getScreenHeight());
+                    //relativeLayoutContainer.setVisibility(View.INVISIBLE);
+                    //animateLayoutParams(getFragmentlayoutHeight(), getScreenHeight());
                 }
 
                 break;
 
             case MotionEvent.ACTION_MOVE:
-                Log.v("ACTION_MOVE", "ACTION_MOVE");
+                Log.v("ACTION_MOVE", String.valueOf(y));
 //                isDragging = !(initailY <= y + getDragButtonHeight()/2 && initailY >= y - getDragButtonHeight()/2);
 //
 //                int height = (getScreenHeight() - y) + (getDragButtonHeight() / 2);
@@ -99,7 +183,13 @@ public class PorquinhoFragment extends android.support.v4.app.Fragment{
 //                    setFragmentLayoutHeight(height);
 //                }
 
-                    setFragmentLayoutHeight(y);
+                    //setFragmentLayoutHeight(y);
+
+                    if(y < 153)
+                    relativeBoxAzul.setY(y);
+                else
+                        Log.v("travou =", "travou");
+
 
                 break;
         }
@@ -126,7 +216,7 @@ public class PorquinhoFragment extends android.support.v4.app.Fragment{
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
-                setFragmentLayoutHeight((Integer) animation.getAnimatedValue());
+                //setFragmentLayoutHeight((Integer) animation.getAnimatedValue());
             }
         });
         valueAnimator.addListener(new Animator.AnimatorListener() {
@@ -216,5 +306,9 @@ public class PorquinhoFragment extends android.support.v4.app.Fragment{
 
     public int getFragmentlayoutHeight() {
         return mLayout.getMeasuredHeight();
+    }
+
+    private int getTopoFragment(){
+        return 1;
     }
 }
